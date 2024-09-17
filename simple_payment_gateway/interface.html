@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philatelists Payment</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Razorpay Checkout JS -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="payment-section">
+            <div class="company-info">
+                <img src="logo.png" alt="Philatelists" class="logo">
+                <h2>PHILATELISTS</h2>
+                <h3>Payment</h3>
+                <p>
+                    Philatelists is a leading platform for stamp collectors across the world. Our services make it easy to buy, sell, and exchange stamps securely. We are dedicated to delivering the best experience for all collectors.
+                </p>
+                <div class="share">
+                    <p>Share this on:</p>
+                    <a href="#"><img src="facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="x_logo.png" alt="X (Twitter)"></a>
+                    <a href="#"><img src="whatsapp1.png" alt="WhatsApp"></a>
+                </div>
+                <div class="contact">
+                    <p><strong>Contact Us:</strong></p>
+                    <p>Email: support@philateLists.com</p>
+                    <p>Phone: +1234567890</p>
+                </div>
+                <p class="terms">
+                    By using Philatelists, you accept all terms and conditions related to your payment. We operate to make your stamp collecting journey seamless and enjoyable.
+                </p>
+            </div>
+            <div class="payment-form">
+                <h3>Payment Details</h3>
+                <form id="payment-form">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" placeholder="₹ Enter Amount" required>
+                    
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="full_name" placeholder="Enter your full name" required>
+                    
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    
+                    <label for="stamp-type">Stamp Type</label>
+                    <input type="text" id="stamp-type" name="stamp_type" placeholder="Enter stamp type" required>
+                    
+                    <button type="button" id="pay-button">Pay</button>
+                </form>
+                <div class="payment-methods">
+                    <img src="upi.png" alt="UPI">
+                    <img src="visa - Copy.png" alt="Visa">
+                    <img src="Rupay.png" alt="RuPay">
+                    <img src="mastercard - Copy.png" alt="Mastercard">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        document.getElementById('pay-button').onclick = function(e) {
+            var amount = document.getElementById('amount').value * 100;  
+            var options = {
+                "key": "rzp_test_wCLxxlH0kBfsnh", // Key Razorpay
+                "amount": amount,
+                "currency": "INR",
+                "name": "Philatelists",
+                "description": "Payment for stamps",
+                "image": "pecock.png", 
+                "handler": function (response) {
+                    alert("Payment successful. Razorpay Payment ID: " + response.razorpay_payment_id);
+                   
+                },
+                "prefill": {
+                    "name": document.getElementById('name').value,
+                    "email": document.getElementById('email').value,
+                    "contact": document.getElementById('phone').value
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>
+</body>
+</html>
