@@ -7,7 +7,7 @@ document.getElementById("paymentForm").addEventListener("submit", function(e) {
     var phone = document.getElementById("phone").value;
     
     var options = {
-        "key": "rzp_test_wCLxxlH0kBfsnh", // razorpay ki api
+        "key": " your RazorPAY api Key", // razorpay ki api
         "amount": amount,
         "currency": "INR",
         "name": name,
